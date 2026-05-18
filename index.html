@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sascha Höthke — Business Coach & Potentialentfachung</title>
+    <meta name="description" content="Als erfahrener Business Coach begleite ich Unternehmer:innen, Führungskräfte und Selbstständige in beruflichen und persönlichen Veränderungsphasen. 25+ Jahre Erfahrung.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy:       #1d1912;
+            --navy-mid:   #2e2820;
+            --gold:       #c9a84c;
+            --gold-light: #e2c97a;
+            --cream:      #faf7f2;
+            --cream-deep: #f2ebe0;
+            --white:      #ffffff;
+            --charcoal:   #1e1e1e;
+            --text-mid:   #555;
+            --border:     rgba(29,25,18,0.12);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--charcoal);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* ══════════════════════════════
+           NAVIGATION
+        ══════════════════════════════ */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 0.6rem 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+        nav.scrolled {
+            background: var(--white);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            padding: 0.4rem 2.5rem;
+        }
+
+        .nav-logo {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+        .nav-logo img {
+            height: 110px;
+            width: auto;
+            display: block;
+            transition: height 0.3s;
+        }
+        nav.scrolled .nav-logo img {
+            height: 72px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+            color: var(--navy);
+        }
+        .nav-links a:hover { color: var(--gold); }
+
+        nav.hero-nav .nav-links a { color: rgba(255,255,255,0.9); }
+        nav.hero-nav .nav-links a:hover { color: var(--gold); }
+        nav.hero-nav.scrolled .nav-links a { color: var(--navy); }
+
+        .nav-cta {
+            color: var(--gold) !important;
+            border: 1.5px solid var(--gold);
+            padding: 0.5rem 1.4rem;
+            transition: all 0.22s !important;
+        }
+        .nav-cta:hover {
+            background: var(--gold) !important;
+            color: var(--white) !important;
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .hamburger span {
+            width: 24px; height: 2px;
+            background: var(--navy);
+            transition: all 0.3s;
+        }
+        nav.hero-nav .hamburger span { background: var(--white); }
+        nav.hero-nav.scrolled .hamburger span { background: var(--navy); }
+
+        .mobile-menu {
+            display: none;
+            position: fixed; inset: 0;
+            background: var(--white);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--navy);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .mobile-menu a:hover { color: var(--gold); }
+        .mobile-close {
+            position: absolute;
+            top: 1.5rem; right: 2rem;
+            font-size: 2.2rem;
+            cursor: pointer;
+            color: var(--navy);
+            line-height: 1;
+        }
+
+        /* ══════════════════════════════
+           HERO — helles Split-Layout
+        ══════════════════════════════ */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 38% 62%;
+            position: relative;
+        }
+
+        .hero-left {
+            background: var(--cream);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 10rem 4rem 5rem 5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Dezente Gold-Linie links */
+        .hero-left::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 15%; bottom: 15%;
+            width: 3px;
+            background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+        }
+
+        .hero-eyebrow {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .hero-eyebrow::before {
+            content: '';
+            display: block;
+            width: 28px; height: 1px;
+            background: var(--gold);
+        }
+
+        .hero-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 4.5vw, 5rem);
+            font-weight: 900;
+            color: var(--navy);
+            line-height: 1.08;
+            margin-bottom: 1.5rem;
+        }
+        .hero-headline em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .hero-subtext {
+            font-size: 1.05rem;
+            color: var(--text-mid);
+            line-height: 1.82;
+            max-width: 420px;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn-gold {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--white);
+            padding: 1rem 2.4rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 2px solid var(--gold);
+            transition: all 0.25s;
+        }
+        .btn-gold:hover {
+            background: transparent;
+            color: var(--gold);
+        }
+
+        .btn-outline {
+            display: inline-block;
+            background: transparent;
+            color: var(--navy);
+            padding: 1rem 2.4rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 1px solid rgba(26,39,68,0.25);
+            transition: all 0.25s;
+        }
+        .btn-outline:hover {
+            border-color: var(--navy);
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .hero-trust {
+            display: flex;
+            gap: 2rem;
+        }
+        .hero-trust-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .hero-trust-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--navy);
+            line-height: 1;
+        }
+        .hero-trust-label {
+            font-size: 0.72rem;
+            color: var(--text-mid);
+            letter-spacing: 0.04em;
+            margin-top: 0.2rem;
+        }
+
+        .hero-right {
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 38% 8%;
+            display: block;
+        }
+        /* Gold overlay at bottom for smooth transition */
+        .hero-right::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 30%;
+            background: linear-gradient(to top, var(--cream) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        /* ══════════════════════════════
+           SHARED UTILS
+        ══════════════════════════════ */
+        section { padding: 6.5rem 2.5rem; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .section-label::before {
+            content: '';
+            display: block;
+            width: 24px; height: 1px;
+            background: var(--gold);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.8vw, 3rem);
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        .section-title.light { color: var(--white); }
+
+        .gold-rule {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+        }
+
+        /* Fade-up */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.75s ease, transform 0.75s ease;
+        }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        .fade-up.d1 { transition-delay: 0.1s; }
+        .fade-up.d2 { transition-delay: 0.2s; }
+        .fade-up.d3 { transition-delay: 0.3s; }
+        .fade-up.d4 { transition-delay: 0.4s; }
+
+        /* ══════════════════════════════
+           RHETORIK
+        ══════════════════════════════ */
+        .rhetorik {
+            background: var(--cream-deep);
+            padding: 6rem 2.5rem;
+        }
+
+        .rhetorik-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .rhetorik-item {
+            padding: 2.5rem;
+            background: var(--white);
+            border-top: 2px solid var(--gold);
+            position: relative;
+        }
+
+        .rhetorik-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: rgba(201,168,76,0.15);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .rhetorik-question {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--navy);
+            line-height: 1.55;
+        }
+
+        /* ══════════════════════════════
+           ÜBER — mit Foto
+        ══════════════════════════════ */
+        .ueber {
+            background: var(--white);
+        }
+
+        .ueber-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .ueber-photo {
+            position: relative;
+        }
+        .ueber-photo img {
+            width: 100%;
+            height: 560px;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+        .ueber-photo::before {
+            content: '';
+            position: absolute;
+            top: -10px; right: -10px;
+            left: 10px; bottom: 10px;
+            border: 2px solid rgba(201,168,76,0.35);
+            z-index: -1;
+        }
+
+        .ueber-text p {
+            font-size: 1.02rem;
+            line-height: 1.9;
+            color: var(--text-mid);
+            margin-bottom: 1.4rem;
+        }
+
+        .ueber-quote {
+            border-left: 3px solid var(--gold);
+            padding: 1.2rem 1.6rem;
+            background: var(--cream);
+            margin: 2rem 0;
+        }
+        .ueber-quote p {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--navy);
+            line-height: 1.55;
+            margin-bottom: 0 !important;
+        }
+
+        .btn-outline-navy {
+            display: inline-block;
+            background: transparent;
+            color: var(--navy);
+            padding: 0.9rem 2.2rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 2px solid var(--navy);
+            transition: all 0.25s;
+        }
+        .btn-outline-navy:hover {
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        /* ══════════════════════════════
+           LEISTUNGEN
+        ══════════════════════════════ */
+        .leistungen {
+            background: var(--cream);
+        }
+
+        .leistungen-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .leistungen-header .section-label { justify-content: center; }
+
+        .leistungen-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+        }
+
+        .leistung-card {
+            background: var(--white);
+            padding: 2.8rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .leistung-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.32s;
+        }
+        .leistung-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(26,39,68,0.09);
+        }
+        .leistung-card:hover::after { transform: scaleX(1); }
+
+        .leistung-icon {
+            width: 46px; height: 46px;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+        .leistung-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+        .leistung-text {
+            font-size: 0.93rem;
+            line-height: 1.78;
+            color: var(--text-mid);
+        }
+
+        /* ══════════════════════════════
+           SPEAKING BANNER — Vollbild-Foto
+        ══════════════════════════════ */
+        .speaking-banner {
+            position: relative;
+            min-height: 640px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            padding: 0;
+        }
+        .speaking-banner-img {
+            position: absolute;
+            inset: 0;
+        }
+        .speaking-banner-img img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center 5%;
+            display: block;
+        }
+        .speaking-banner-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to right,
+                rgba(29,25,18,0.88) 0%,
+                rgba(29,25,18,0.65) 50%,
+                rgba(29,25,18,0.20) 100%
+            );
+        }
+        .speaking-banner-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2.5rem;
+            width: 100%;
+        }
+        .speaking-banner-content .section-label { color: var(--gold-light); }
+        .speaking-banner-content .section-label::before { background: var(--gold-light); }
+        .speaking-banner-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 3.5vw, 2.8rem);
+            font-style: italic;
+            color: var(--white);
+            line-height: 1.4;
+            max-width: 700px;
+            margin-bottom: 1.5rem;
+        }
+        .speaking-banner-sub {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.65);
+            max-width: 480px;
+            line-height: 1.75;
+            font-weight: 300;
+        }
+
+        /* ══════════════════════════════
+           ZAHLEN — hell
+        ══════════════════════════════ */
+        .zahlen {
+            background: var(--cream-deep);
+            padding: 5rem 2.5rem;
+        }
+
+        .zahlen-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+        .zahlen-item {
+            padding: 2.5rem 1rem;
+        }
+        .zahlen-num {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 900;
+            color: var(--navy);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        .zahlen-num span {
+            color: var(--gold);
+        }
+        .zahlen-label {
+            font-size: 0.88rem;
+            color: var(--text-mid);
+            font-weight: 400;
+            letter-spacing: 0.03em;
+        }
+
+        /* ══════════════════════════════
+           KONTAKT — mit Foto
+        ══════════════════════════════ */
+        .kontakt {
+            background: var(--white);
+        }
+
+        .kontakt-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .kontakt-left { }
+
+        .kontakt-left p {
+            font-size: 1rem;
+            color: var(--text-mid);
+            line-height: 1.82;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .kontakt-details { margin-bottom: 2.5rem; }
+        .kontakt-detail {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            margin-bottom: 0.9rem;
+        }
+        .kontakt-icon {
+            width: 18px; height: 18px;
+            color: var(--gold);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .kontakt-detail a,
+        .kontakt-detail span {
+            font-size: 0.95rem;
+            color: var(--charcoal);
+            text-decoration: none;
+        }
+        .kontakt-detail a:hover { color: var(--gold); }
+
+        /* Foto unter Kontaktinfos */
+
+        /* Formular */
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+        .form-group { margin-bottom: 1.1rem; }
+        .form-group label {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--navy);
+            margin-bottom: 0.45rem;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 1px solid var(--border);
+            background: var(--cream);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.93rem;
+            color: var(--charcoal);
+            outline: none;
+            border-radius: 0;
+            transition: border-color 0.2s, background 0.2s;
+            -webkit-appearance: none;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--gold);
+            background: var(--white);
+        }
+        .form-group textarea { min-height: 110px; resize: vertical; }
+
+        .form-checkbox {
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        .form-checkbox input[type="checkbox"] {
+            width: 17px; height: 17px;
+            flex-shrink: 0; margin-top: 3px;
+            accent-color: var(--gold); cursor: pointer;
+        }
+        .form-checkbox label {
+            font-size: 0.78rem;
+            color: #888;
+            line-height: 1.65;
+            cursor: pointer;
+        }
+        .form-checkbox label a { color: var(--gold); text-decoration: none; }
+        .form-checkbox label a:hover { text-decoration: underline; }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--navy);
+            color: var(--white);
+            padding: 1rem 2rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            border: 2px solid var(--navy);
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+        .btn-submit:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--white);
+        }
+
+        /* ══════════════════════════════
+           AUSZEICHNUNG
+        ══════════════════════════════ */
+        .auszeichnung {
+            background: var(--navy);
+        }
+        .auszeichnung-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+        .auszeichnung-text p {
+            font-size: 1.02rem;
+            line-height: 1.9;
+            color: rgba(255,255,255,0.65);
+            margin-bottom: 1.4rem;
+            font-weight: 300;
+        }
+        .auszeichnung-text .section-label { color: var(--gold-light); }
+        .auszeichnung-text .section-label::before { background: var(--gold-light); }
+        .auszeichnung-text .section-title { color: var(--white); }
+        .auszeichnung-quote {
+            border-left: 3px solid var(--gold);
+            padding: 1.2rem 1.6rem;
+            background: rgba(201,168,76,0.07);
+            margin: 2rem 0;
+        }
+        .auszeichnung-quote p {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.08rem;
+            color: rgba(255,255,255,0.88);
+            line-height: 1.6;
+        }
+        .auszeichnung-photo img {
+            width: 100%;
+            display: block;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+        }
+        .auszeichnung-caption {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+            margin-top: 1rem;
+            font-style: italic;
+            line-height: 1.55;
+        }
+
+        /* ══════════════════════════════
+           FOOTER
+        ══════════════════════════════ */
+        footer {
+            background: var(--navy);
+            padding: 2.8rem 2.5rem;
+        }
+        .footer-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap; gap: 1.2rem;
+        }
+        .footer-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+        }
+        .footer-links { display: flex; gap: 2rem; }
+        .footer-links a {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.45);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--gold); }
+        .footer-copy {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.28);
+        }
+
+        /* ══════════════════════════════
+           RESPONSIVE
+        ══════════════════════════════ */
+        @media (max-width: 960px) {
+            .hero              { grid-template-columns: 1fr; }
+            .hero-left         { padding: 8rem 2rem 3rem; }
+            .hero-left::before { display: none; }
+            .hero-right        { height: 55vw; min-height: 320px; }
+            .hero-right::after { display: none; }
+
+            .ueber-grid        { grid-template-columns: 1fr; gap: 3rem; }
+            .ueber-photo       { order: -1; }
+            .ueber-photo img   { height: 380px; }
+            .ueber-wulff       { bottom: -1rem; right: 0.5rem; width: 180px; }
+            .ueber-wulff img   { height: 130px; }
+
+            .rhetorik-grid     { grid-template-columns: 1fr; }
+            .auszeichnung-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .leistungen-grid   { grid-template-columns: 1fr; }
+            .zahlen-grid       { grid-template-columns: 1fr; }
+            .kontakt-grid      { grid-template-columns: 1fr; gap: 3rem; }
+            .form-row          { grid-template-columns: 1fr; }
+
+            section            { padding: 4rem 1.8rem; }
+            nav                { padding: 1rem 1.5rem; }
+            nav.scrolled       { padding: 0.8rem 1.5rem; }
+
+            .nav-links         { display: none; }
+            .hamburger         { display: flex; }
+
+            .footer-inner      { flex-direction: column; text-align: center; }
+            .footer-links      { justify-content: center; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-actions { flex-direction: column; }
+            .btn-gold, .btn-outline { text-align: center; }
+            .hero-trust { gap: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar" class="hero-nav">
+    <a href="#home" class="nav-logo">
+        <img src="Website-Bilder/logo2.png" alt="Sascha Höthke">
+    </a>
+    <ul class="nav-links">
+        <li><a href="#ueber">Über</a></li>
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="#kontakt" class="nav-cta">Erstgespräch</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+    </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <span class="mobile-close" id="mobileClose">&times;</span>
+    <a href="#ueber"      onclick="closeMobile()">Über</a>
+    <a href="#leistungen" onclick="closeMobile()">Leistungen</a>
+    <a href="#kontakt"    onclick="closeMobile()">Kontakt</a>
+    <a href="#kontakt"    onclick="closeMobile()" style="color:var(--gold)">Erstgespräch</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home" style="padding:0;">
+    <div class="hero-left">
+        <p class="hero-eyebrow">Business Coach &amp; Speaker</p>
+        <h1 class="hero-headline">Du bist<br><em>wundervoll.</em></h1>
+        <p class="hero-subtext">Erkenne Deine Stärken. Entfache Dein volles Potential. Werde die Version von Dir, die Du schon immer sein konntest.</p>
+        <div class="hero-actions">
+            <a href="#kontakt" class="btn-gold">Jetzt Potential entfachen</a>
+            <a href="#ueber"   class="btn-outline">Mehr erfahren</a>
+        </div>
+        <div class="hero-trust">
+            <div class="hero-trust-item">
+                <span class="hero-trust-num">25+</span>
+                <span class="hero-trust-label">Jahre Erfahrung</span>
+            </div>
+            <div class="hero-trust-item" style="border-left:1px solid var(--border); padding-left:2rem;">
+                <span class="hero-trust-num">100+</span>
+                <span class="hero-trust-label">Veranstaltungen</span>
+            </div>
+            <div class="hero-trust-item" style="border-left:1px solid var(--border); padding-left:2rem;">
+                <span class="hero-trust-num">1</span>
+                <span class="hero-trust-label">Ziel: Dein Potential</span>
+            </div>
+        </div>
+    </div>
+    <div class="hero-right">
+        <img src="Website-Bilder/Shooting-1.jpg" alt="Sascha Höthke — Business Coach">
+    </div>
+</section>
+
+<!-- RHETORIK -->
+<section class="rhetorik" id="rhetorik" style="padding:5rem 2.5rem;">
+    <div class="container">
+        <p class="section-label" style="margin-bottom:2.5rem;">Drei Fragen, die verändern</p>
+        <div class="rhetorik-grid">
+            <div class="rhetorik-item fade-up">
+                <div class="rhetorik-num">01</div>
+                <p class="rhetorik-question">Welche Version von Dir verteidigst Du — obwohl sie Dich limitiert?</p>
+            </div>
+            <div class="rhetorik-item fade-up d1">
+                <div class="rhetorik-num">02</div>
+                <p class="rhetorik-question">Willst Du Dich wirklich entwickeln — oder nur besser fühlen?</p>
+            </div>
+            <div class="rhetorik-item fade-up d2">
+                <div class="rhetorik-num">03</div>
+                <p class="rhetorik-question">Was würdest Du verlieren, wenn Du wirklich Dein volles Potential lebst?</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- ÜBER -->
+<section class="ueber" id="ueber">
+    <div class="container">
+        <div class="ueber-grid">
+
+            <div class="ueber-photo fade-up">
+                <img src="Website-Bilder/ChristinaPoersch20260327_15_53_51_14.jpg"
+                     alt="Sascha Höthke im Gespräch">
+            </div>
+
+            <div class="ueber-text">
+                <p class="section-label">Über Sascha Höthke</p>
+                <h2 class="section-title fade-up">Führen durch<br>Vorführen.</h2>
+                <p class="fade-up d1">Seit über 25 Jahren ist Sascha Höthke in der Business-Welt unterwegs. Bereits in jungen Jahren leitete er ein Vertriebsteam im Finanz- und Versicherungsbereich — und war persönlich für zweistellige Millionenumsätze verantwortlich.</p>
+                <div class="ueber-quote fade-up d2">
+                    <p>„Ich spreche nicht über Erfolg. Ich habe ihn gelebt — und genauso geleitet."</p>
+                </div>
+                <p class="fade-up d2">Sascha Höthke hat Mitarbeiter eingestellt und in Verkauf, Produktwesen sowie Persönlichkeitsentwicklung ausgebildet. Aus diesen geschäftlichen, weiterbildenden und persönlichen Erfahrungen entstand das Programm zur Potentialentfachung.</p>
+                <a href="#kontakt" class="btn-outline-navy fade-up d3">Erstgespräch vereinbaren</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- AUSZEICHNUNG -->
+<section class="auszeichnung" id="auszeichnung">
+    <div class="container">
+        <div class="auszeichnung-grid">
+
+            <div class="auszeichnung-text">
+                <p class="section-label">Auszeichnung 2005</p>
+                <h2 class="section-title fade-up">Ein Meilenstein<br>der Karriere.</h2>
+                <div class="auszeichnung-quote fade-up d1">
+                    <p>„Führen durch Vorführen" — dieser Grundsatz war schon damals keine Theorie, sondern gelebte Realität.</p>
+                </div>
+                <p class="fade-up d2">Im Januar 2005 wurde Sascha Höthke zum Divisional Manager ausgezeichnet — durch den damaligen niedersächsischen Ministerpräsidenten und späteren Bundespräsidenten <strong style="color:rgba(255,255,255,0.85);">Christian Wulff</strong> sowie den Oberbürgermeister von Braunschweig <strong style="color:rgba(255,255,255,0.85);">Dr. Gert Hoffmann</strong>.</p>
+                <p class="fade-up d3">Diese Auszeichnung steht für nachgewiesene Führungsstärke, verantwortetes Wachstum und persönliche Leistung — und ist bis heute das Fundament für alles, was Sascha Höthke in der Potentialentfachung verkörpert.</p>
+            </div>
+
+            <div class="auszeichnung-photo fade-up d2">
+                <img src="Website-Bilder/Wulff.jpg"
+                     alt="Sascha Höthke mit MP Christian Wulff und OB Dr. Gert Hoffmann, 2005">
+                <p class="auszeichnung-caption">Januar 2005 — Auszeichnung zum Divisional Manager durch Ministerpräsident Christian Wulff (li.) und OB Dr. Gert Hoffmann (re.), Braunschweig</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- LEISTUNGEN -->
+<section class="leistungen" id="leistungen">
+    <div class="container">
+        <div class="leistungen-header">
+            <p class="section-label">Leistungen</p>
+            <h2 class="section-title fade-up">Was ich für Dich tue.</h2>
+        </div>
+        <div class="leistungen-grid">
+
+            <div class="leistung-card fade-up">
+                <svg class="leistung-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="24" cy="15" r="8"/>
+                    <path d="M8 44c0-8.837 7.163-16 16-16s16 7.163 16 16"/>
+                </svg>
+                <h3 class="leistung-title">Individuelles Coaching</h3>
+                <p class="leistung-text">Coaching ist kein Ratgeber von außen, sondern ein Prozess, der Deine eigenen Antworten sichtbar macht. Keine Standardlösungen — maßgeschneiderte Begleitung für Deine einzigartige Situation.</p>
+            </div>
+
+            <div class="leistung-card fade-up d1">
+                <svg class="leistung-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M24 6l4.5 9.1 10 1.5-7.25 7.06 1.71 9.97L24 28.71l-8.96 4.92 1.71-9.97L9.5 16.6l10-1.5Z"/>
+                </svg>
+                <h3 class="leistung-title">Motivationssteigerung</h3>
+                <p class="leistung-text">Im Mittelpunkt stehst Du — mit Deinen Zielen, Herausforderungen und Stärken. Neue Perspektiven statt alter Denkweisen. Weil echte Veränderung dort beginnt, wo Du ehrlich zu Dir selbst wirst.</p>
+            </div>
+
+            <div class="leistung-card fade-up d2">
+                <svg class="leistung-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="10" width="40" height="28" rx="2"/>
+                    <path d="M20 22l10 6-10 6Z" fill="currentColor" stroke="none"/>
+                </svg>
+                <h3 class="leistung-title">Inspirierende Vorträge</h3>
+                <p class="leistung-text">Impulse, die Mut machen, Verantwortung zu übernehmen. Als erfahrener Speaker sorge ich für nachhaltige Wirkung — auf Events, in Teams oder in Deinem Unternehmen.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- SPEAKING BANNER -->
+<div class="speaking-banner">
+    <div class="speaking-banner-img">
+        <img src="Website-Bilder/250603171215Foto_JustinBockey_72.jpg"
+             alt="Sascha Höthke auf der Bühne">
+    </div>
+    <div class="speaking-banner-overlay"></div>
+    <div class="speaking-banner-content">
+        <p class="section-label">Als Speaker</p>
+        <p class="speaking-banner-quote fade-up">„Deine Zeit ist jetzt."</p>
+        <p class="speaking-banner-sub fade-up d1">Leidenschaftliche Impulse, die Menschen wirklich bewegen. Auf Bühnen, Events und in Unternehmen — weil Veränderung mit neuem Denken beginnt.</p>
+    </div>
+</div>
+
+<!-- ZAHLEN -->
+<section class="zahlen">
+    <div class="container">
+        <div class="zahlen-grid">
+            <div class="zahlen-item fade-up">
+                <div class="zahlen-num"><span>25</span>+</div>
+                <div class="zahlen-label">Jahre Erfahrung in der Business-Welt</div>
+            </div>
+            <div class="zahlen-item fade-up d1">
+                <div class="zahlen-num" style="font-size:clamp(2rem,4vw,3.5rem); padding-top:0.8rem;">Mio. +</div>
+                <div class="zahlen-label">Eigenumsatz im mehrstelligen Millionenbereich</div>
+            </div>
+            <div class="zahlen-item fade-up d2">
+                <div class="zahlen-num"><span>&#8734;</span></div>
+                <div class="zahlen-label">Erkenntnisse, Tränen &amp; Freuden</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- KONTAKT -->
+<section class="kontakt" id="kontakt">
+    <div class="container">
+        <div class="kontakt-grid">
+
+            <div class="kontakt-left">
+                <p class="section-label">Kontakt</p>
+                <h2 class="section-title fade-up">Lass uns herausfinden,<br>was für Dich möglich ist.</h2>
+                <p class="fade-up d1">Vereinbare ein unverbindliches Erstgespräch. Gemeinsam schaffen wir Raum für Klarheit, Entwicklung und nachhaltige Veränderung.</p>
+
+                <div class="kontakt-details fade-up d2">
+                    <div class="kontakt-detail">
+                        <svg class="kontakt-icon" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                        </svg>
+                        <a href="tel:+491701210210">+49 170 1 210 210</a>
+                    </div>
+                    <div class="kontakt-detail">
+                        <svg class="kontakt-icon" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                        </svg>
+                        <a href="mailto:info@hoethke.com">info@hoethke.com</a>
+                    </div>
+                    <div class="kontakt-detail">
+                        <svg class="kontakt-icon" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>Falkenhorst 3A, 38108 Braunschweig</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="fade-up d1">
+                <form id="contactForm" onsubmit="handleSubmit(event)" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" name="name" required placeholder="Dein Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefon">Telefon *</label>
+                            <input type="tel" id="telefon" name="telefon" required placeholder="+49 ...">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-Mail *</label>
+                        <input type="email" id="email" name="email" required placeholder="deine@email.de">
+                    </div>
+                    <div class="form-group">
+                        <label for="nachricht">Nachricht</label>
+                        <textarea id="nachricht" name="nachricht" placeholder="Was beschäftigt Dich?"></textarea>
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="dsgvo" name="dsgvo" required>
+                        <label for="dsgvo">Ich bin damit einverstanden, dass meine Daten zur Kontaktaufnahme gespeichert und verarbeitet werden. <a href="datenschutz.html">Datenschutzerklärung</a></label>
+                    </div>
+                    <button type="submit" class="btn-submit" id="submitBtn">Erstgespräch anfragen</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-links">
+            <a href="impressum.html">Impressum</a>
+            <a href="datenschutz.html">Datenschutz</a>
+        </div>
+        <p class="footer-copy">© 2025 Alle Rechte vorbehalten.</p>
+    </div>
+</footer>
+
+<script>
+    const navbar = document.getElementById('navbar');
+
+    // Beim Hero: Nav transparent + weiße Links, sonst Navy-Links
+    window.addEventListener('scroll', () => {
+        const heroHeight = document.querySelector('.hero').offsetHeight;
+        navbar.classList.toggle('scrolled', window.scrollY > 60);
+        if (window.scrollY > heroHeight - 80) {
+            navbar.classList.remove('hero-nav');
+        } else {
+            navbar.classList.add('hero-nav');
+        }
+    }, { passive: true });
+
+    // Hamburger
+    const hamburger   = document.getElementById('hamburger');
+    const mobileMenu  = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+    hamburger.addEventListener('click',   () => mobileMenu.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    function closeMobile() { mobileMenu.classList.remove('open'); }
+
+    // Fade-up
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Formular
+    function handleSubmit(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        btn.textContent = 'Nachricht gesendet ✓';
+        btn.style.cssText = 'background:#2d7a4f;border-color:#2d7a4f;color:#fff;cursor:default;';
+        btn.disabled = true;
+    }
+</script>
+
+</body>
+</html>
